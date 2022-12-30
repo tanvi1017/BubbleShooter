@@ -7,8 +7,10 @@
         <entry key="app/src/main/res/drawable/bg123.xml" value="0.106" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1255" />
         <entry key="app/src/main/res/drawable/score_bar.xml" value="0.106" />
+        <entry key="app/src/main/res/layout/activity_animation.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1255" />
       </map>
     </option>
   </component>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Balloon Shooter</string>
+    <string name="scored_max">Congratulations You Crossed Max Score</string>
 </resources>
