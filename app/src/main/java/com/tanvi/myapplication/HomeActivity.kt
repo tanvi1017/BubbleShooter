@@ -52,19 +52,18 @@ class HomeActivity : AppCompatActivity() {
     private var balloonArrayColors = mutableListOf<BallonPair>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_home)
         balloonArrayColors.add(BallonPair(R.color.balloon_red,R.drawable.red_balloon))
         balloonArrayColors.add(BallonPair(R.color.balloon_yellow,R.drawable.yellow_balloon))
         balloonArrayColors.add(BallonPair(R.color.balloon_blue,R.drawable.blue_ballon))
-        balloonArrayColors.add(BallonPair(R.color.balloon_green,R.drawable.green_balloon))
+        balloonArrayColors.add(BallonPair(R.color.purple_200, R.drawable.purple_balloon))
         initViews()
         setListeners()
         setInitialScore()
         displayMetrics = DisplayMetrics()
         handler = Handler(Looper.getMainLooper())
         windowManager.defaultDisplay.getMetrics(displayMetrics)
-        screenHeight = displayMetrics?.heightPixels ?: 0
+        screenHeight = displayMetrics?.heightPixels ?:0
     }
     private fun setInitialScore(){
         val sharedPref = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE)
@@ -92,6 +91,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
     private fun initViews() {
+        //
         ivMaxScoreTv = findViewById(R.id.ivMaxScore)
         ivScore = findViewById(R.id.ivScore)
         balloonLayout = findViewById(R.id.linearLayout)
@@ -186,7 +186,6 @@ class HomeActivity : AppCompatActivity() {
             mediaPlayer.start()
             val img = mView.tag as? BallonPair
             //img?.icon?.let { it1 -> mView.setImageResource(it1) }
-            //OR KUCH ni...
             mView.setImageResource(R.drawable.fireworks)
             mView.setTint(img?.color)
             mView.isClickable=false
@@ -206,7 +205,6 @@ class HomeActivity : AppCompatActivity() {
             ivScore.text = "$counter"
             setMaxScore(counter)
         }
-
         animateView(mView)
     }
     private fun balloonCenterParams():ConstraintLayout.LayoutParams{
@@ -243,9 +241,7 @@ class HomeActivity : AppCompatActivity() {
     }
     private fun balloonSecondParams():ConstraintLayout.LayoutParams{
         val balloonSize = generateBalloonSize()
-        val params = ConstraintLayout.LayoutParams(
-            getPixel(balloonSize),
-            getPixel(balloonSize))
+        val params = ConstraintLayout.LayoutParams(getPixel(balloonSize), getPixel(balloonSize))
         params.startToStart = balloonLayout.id
         params.endToEnd = balloonLayout.id
         params.bottomToBottom = balloonLayout.id
@@ -255,10 +251,7 @@ class HomeActivity : AppCompatActivity() {
     }
     private fun balloonFourthParams():ConstraintLayout.LayoutParams {
         val balloonSize = generateBalloonSize()
-        val params = ConstraintLayout.LayoutParams(
-            getPixel(balloonSize),
-            getPixel(balloonSize)
-        )
+        val params = ConstraintLayout.LayoutParams(getPixel(balloonSize),getPixel(balloonSize))
         params.startToStart = balloonLayout.id
         params.endToEnd = balloonLayout.id
         params.bottomToBottom = balloonLayout.id
@@ -281,20 +274,19 @@ class HomeActivity : AppCompatActivity() {
         val cy = anyView.height / 2
         val initialRadius = hypot(cx.toDouble(), cy.toDouble()).toFloat()
         val anim =
-            ViewAnimationUtils.createCircularReveal(anyView, cx, cy, initialRadius, 0.1f)
-        anim.addListener(object : AnimatorListenerAdapter() {
+                   ViewAnimationUtils.createCircularReveal(anyView, cx, cy, initialRadius, 0.1f)
+                   anim.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                anyView.visibility = View.INVISIBLE
-            }
+                anyView.visibility = View.INVISIBLE }
         })
         anim.start()
     }
 
     companion object {
     }
-}
-fun ImageView.setTint(@ColorRes color: Int?) {
+ }
+ fun ImageView.setTint(@ColorRes color: Int?) {
     if (color == null) {
         ImageViewCompat.setImageTintList(this, null)
     } else {
